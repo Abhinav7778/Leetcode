@@ -14,37 +14,29 @@
  * }
  */
 class Solution {
-    int res = Integer.MIN_VALUE;
+    int max = Integer.MIN_VALUE;
     public int diameterOfBinaryTree(TreeNode root) {
-        
         helper(root);
-        
-        return res - 1;
+        return max - 1;
     }
     
-    private int helper(TreeNode root)
+    public int helper(TreeNode root)
     {
-        //BC
+        
         if(root == null)return 0;
         
-        //HYPOTHESIS
+        int left_val = helper(root.left);
+        int right_val = helper(root.right);
         
-        int left_height = helper(root.left);
-        int right_height = helper(root.right);
+        //when actual answer
+        int ans = 1 + left_val + right_val;
         
-        
-        //INDUCTION
-        // case when the curr root is the ans, i.e. longest path goes through it amd left and right subtrees
-        int ans = 1 + left_height + right_height;
-        //comparing to see if theis is the longest path
-        res = Math.max(res, ans);
+        //check for max
+        max = Math.max(max, ans);
         
         
+        //Not the ans, but could be a part of it
         
-        //case when curr root is not the ans, but part of it
-        
-        int temp = 1 + Math.max(left_height, right_height);
-        
-        return temp;
+        return 1 + Math.max(left_val, right_val);
     }
 }
