@@ -6,10 +6,6 @@ class Solution {
             maxDamage = Math.max(maxDamage, d);
             sumDamage += d;
         }
-        if (maxDamage >= armor) {
-            return sumDamage - armor;
-        } else {
-            return sumDamage - maxDamage;
-        }
+        return sumDamage - Math.min(armor, maxDamage);
     }
 }
