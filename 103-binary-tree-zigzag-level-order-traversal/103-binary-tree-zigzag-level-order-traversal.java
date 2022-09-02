@@ -14,6 +14,8 @@
  * }
  */
 class Solution {
+  
+    /* ***************RECURSIVE****************************
     List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         helper(root, true, 0);
@@ -23,7 +25,6 @@ class Solution {
             if(i % 2 != 0)
             {
                 Collections.reverse(res.get(i));
-
             }
         }
         
@@ -51,4 +52,56 @@ class Solution {
         }
 
     }
+    
+    */
+    
+    /***********************ITERATIVE**********************/
+    
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        
+        
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        
+        if(root == null)return res;
+        
+        q.add(root);
+        boolean isUlta = false;
+        
+        while(!q.isEmpty())
+        {
+            int size = q.size();
+            List<Integer> level = new ArrayList<>();
+            isUlta = !isUlta;
+            
+            
+            
+            for(int i = 0; i < size; ++i)
+            {
+                TreeNode curr = q.remove();
+                
+                if(curr == null)break;
+                
+                level.add(curr.val);
+                
+                if(curr.left != null)
+                {
+                    q.add(curr.left);
+                }
+                if(curr.right != null)
+                {
+                    q.add(curr.right);
+                }
+            }
+            
+            if(!isUlta)
+            {
+                Collections.reverse(level);
+            }
+            res.add(level);
+        }
+        
+        return res;
+    }
+    
 }
