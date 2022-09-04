@@ -14,36 +14,24 @@
  * }
  */
 class Solution {
-    int res = Integer.MIN_VALUE;
+    int max;
     public int maxPathSum(TreeNode root) {
-        
+        max = Integer.MIN_VALUE;
         helper(root);
-        
-        return res;
+        return max;
     }
-    
     private int helper(TreeNode root)
     {
-        //BC
         if(root == null)return 0;
         
-        //HYPOTHESIS
+        int left_val = helper(root.left);
+        int right_val = helper(root.right);
         
-        int leftH = helper(root.left);
-        int rightH = helper(root.right);
+        int temp = Math.max(root.val, root.val + Math.max(left_val, right_val));
         
-        //INDUCTION
+        max = Math.max(max, root.val + left_val + right_val);
+        max = Math.max(max, temp);
         
-        //case when cuur root is part of answer's left or right subtree, here the outer max is for the case when booth the left and right subtree are negative, in that case it will be better to not consider them in the answer calculation, since in here we can start from non-leaf nodes, we can ignore these nodes.
-        
-        int temp = Math.max(root.val, root.val + Math.max(leftH, rightH));
-        
-        //case when curr root is the answer
-        int ans = Math.max(root.val + leftH + rightH, temp);
-        
-        res = Math.max(res, ans);
-        
-
         
         return temp;
     }
