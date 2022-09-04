@@ -5,7 +5,7 @@ class Solution {
         int row[] = new int[3];
         int col[] = new int[3];
         int diag = 0;
-        int antiDiag = 0;;
+        int antiDiag = 0;
         
         for(int i = 0; i < moves.length; ++i)
         {
