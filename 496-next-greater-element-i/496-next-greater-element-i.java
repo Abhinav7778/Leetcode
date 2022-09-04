@@ -12,7 +12,6 @@ class Solution {
             while(!s.isEmpty() && nums2[s.peek()] < nums2[i])
             {
                 hm.put(nums2[s.peek()], nums2[i]);
-                // System.out.println(" "+ nums[s.peek() + " "+ nums2[i]);
                 s.pop();
             }
             s.push(i);
@@ -26,3 +25,5 @@ class Solution {
         return finalRes;
     }
 }
+// TC: O(N)
+//SC: O(N)
