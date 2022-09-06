@@ -11,24 +11,44 @@
 class Solution {
     public boolean isPalindrome(ListNode head) {
         
-        List<Integer> al = new ArrayList<>();
+        if(head == null)return true;
         
-        while(head != null)
+        ListNode halfPoint = getMid(head);
+        ListNode halfRevStart = reverseHalf(halfPoint.next);
+        
+        while(halfRevStart != null)
         {
-            al.add(head.val);
+            if(halfRevStart.val != head.val)return false;
             head = head.next;
-        }
-        
-        int s = 0, e = al.size() - 1;
-        while(s < e)
-        {
-            if(al.get(s) != al.get(e))
-            {
-                return false;
-            }
-            ++s;
-            --e;
+            halfRevStart = halfRevStart.next;
         }
         return true;
+    }
+    
+    public ListNode getMid(ListNode head)
+    {
+        ListNode fast = head, slow = head;
+        
+        while(fast.next != null && fast.next.next!= null)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+    
+    public ListNode reverseHalf(ListNode head)
+    {
+        ListNode prev = null;
+        ListNode curr = head;
+        
+        while(curr!= null)
+        {
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
     }
 }
