@@ -16,8 +16,6 @@ class Solution {
     {
         if(root == null)return root;
         
-        if(root.val > p.val && root.val < q.val)return root;
-
         if(root.val > p.val && root.val > q.val)return helper(root.left, p, q);
         else if(root.val < p.val && root.val < q.val)return helper(root.right, p, q);
         else /*if(root.val > p.val && root.val < q.val)*/return root;
