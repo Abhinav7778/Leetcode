@@ -31,7 +31,7 @@ class Solution {
     }
     public void helper(Node left, Node right)
     {
-        if(left == null || right == null)return;
+        if(left == null )return;
         
         left.next = right;
         
