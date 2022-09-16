@@ -14,23 +14,24 @@
  * }
  */
 class Solution {
-        class Node
-        {
-            TreeNode node;
-            int level;
-            Node(TreeNode node, int level)
-            {
-                this.node = node;
-                this.level = level;
-            }
-        }
-    public int widthOfBinaryTree(TreeNode root) {
+    class Node
+    {
+        int level;
+        TreeNode node;
         
-        int res = 0;
+        Node(int level, TreeNode node)
+        {
+            this.level = level;
+            this.node = node;
+        }
+    }
+    public int widthOfBinaryTree(TreeNode root) {
         
         Queue<Node> q = new LinkedList<>();
         
-        q.add(new Node(root, 0));
+        q.add(new Node(0, root));
+        
+        int max = Integer.MIN_VALUE;
         
         while(!q.isEmpty())
         {
@@ -38,33 +39,32 @@ class Solution {
             
             int start = 0, end = 0;
             
-            
-            int min = q.peek().level;
+            int minOfCurrLevel = q.peek().level;
             
             for(int i = 0; i < size; ++i)
             {
                 Node temp = q.remove();
                 
-                int index = temp.level - min;
+                int tempLevel = temp.level;
                 
-                if( i == 0) start = index; 
-                if(i == size - 1) end = index;
+                int normalizedLevel = tempLevel - minOfCurrLevel;
+                
+                if(i == 0)start = normalizedLevel;
+                
+                if(i == size - 1)end = normalizedLevel;
                 
                 if(temp.node.left != null)
                 {
-                    q.add(new Node(temp.node.left, 2*index + 1));
+                    q.add(new Node(2 * normalizedLevel + 1, temp.node.left));
                 }
                 if(temp.node.right != null)
                 {
-                    q.add(new Node(temp.node.right, 2*index + 2));
+                    q.add(new Node(2 * normalizedLevel + 2, temp.node.right));
                 }
-                
             }
+            max = Math.max(max, end - start + 1);
             
-            res = Math.max(res, end - start + 1);
         }
-        
-        return res;
-        
+        return max;
     }
 }
