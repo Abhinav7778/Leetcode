@@ -8,76 +8,63 @@
  * }
  */
 class Solution {
-    
-    /*************************BRUTE******************************************
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        ArrayList<TreeNode> tillP = new ArrayList<>();
         
-        TreeNode res = new TreeNode(root.val);
+        ArrayList<TreeNode> tillQ = new ArrayList<>();
         
-        List<TreeNode> pathP = new ArrayList<>();
+        helper(root, p, tillP);
         
-        List<TreeNode> pathQ = new ArrayList<>();
+        helper(root, q, tillQ);
         
-        helper(root, p, pathP);
-        
-        helper(root, q, pathQ);
-
-        for(int i = 0; i < pathP.size(); ++i)
+        for(int i = 0; i < tillP.size(); ++i)
         {
-            if(pathQ.size() <= i || pathP.size() <= 1)break;
-            if(pathP.get(i) == pathQ.get(i))
-            {
-                res = pathP.get(i);
-            }
-            else
-            {
-                break;
-            }
+            System.out.print(" "+tillP.get(i).val);
+        }
+        System.out.println();
+        
+                
+        for(int i = 0; i < tillQ.size(); ++i)
+        {
+            System.out.print(" "+tillQ.get(i).val);
         }
         
-        return res;
+        
+        int j = 0, i = 0;
+        
+        for( i = 0; i < tillP.size(); ++i)
+        {
+            if( j >= tillQ.size())
+                break;
+            if(tillP.get(i).val != tillQ.get(j).val)
+            {
+                return tillP.get(i - 1);
+            }
+            ++j;
+        }
+        return tillP.get(i - 1);
     }
-    private boolean helper(TreeNode root, TreeNode x, List<TreeNode> path)
+    
+    public boolean helper(TreeNode root, TreeNode x, ArrayList<TreeNode> tillX)
     {
-        if(root == null)return false;
+        if(root == null)
+            return false;
         
-        path.add(root);
+        tillX.add(root);
         
-        if(root.val == x.val)return true;
+        if(root == x)
+            return true;
         
-        if(helper(root.left, x, path) || helper(root.right, x, path))
+        
+        
+        if(helper(root.left, x, tillX) || helper(root.right, x, tillX))
         {
             return true;
         }
         
-        path.remove(path.size() - 1);
+        tillX.remove(tillX.size() - 1);
+        
         
         return false;
     }
-    
-    */
-    //****************OPTIMIZED******************
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        
-        if(root == null)return null;    
-        
-        if(root == p || root == q)return root;
-        
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-        
-        if(left == null)
-        {
-            return right;
-        }
-        else if(right == null)
-        {
-            return left;
-        }
-        else
-        {
-            return root;
-        }
-    }
-    
 }
