@@ -16,19 +16,7 @@ class Solution {
         helper(root, p, tillP);
         
         helper(root, q, tillQ);
-        
-        for(int i = 0; i < tillP.size(); ++i)
-        {
-            System.out.print(" "+tillP.get(i).val);
-        }
-        System.out.println();
-        
-                
-        for(int i = 0; i < tillQ.size(); ++i)
-        {
-            System.out.print(" "+tillQ.get(i).val);
-        }
-        
+
         
         int j = 0, i = 0;
         
