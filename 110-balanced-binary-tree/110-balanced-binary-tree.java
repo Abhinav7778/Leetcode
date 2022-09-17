@@ -22,18 +22,18 @@ class Solution {
         return isBal;
     }
     
-    private int helper(TreeNode root)
+    public int helper(TreeNode root)
     {
-        if(root == null)return 0;
+        if(root == null)
+            return 0;
         
-        int lh = helper(root.left);
-        int rh = helper(root.right);
+        int left_ht = helper(root.left);
+        int right_ht = helper(root.right);
         
-        if(Math.abs(lh - rh) > 1)
+        if(Math.abs(left_ht - right_ht) > 1)
         {
             isBal = false;
         }
-        
-        return 1+ Math.max(lh, rh);
+        return 1 + Math.max(left_ht, right_ht);
     }
 }
