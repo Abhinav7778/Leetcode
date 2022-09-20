@@ -15,20 +15,13 @@
  */
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        TreeNode binaryTree;
-        binaryTree = helper( preorder, 0, inorder, 0, inorder.length - 1);
-        return binaryTree;
+        return helper(0, preorder, 0, inorder.length - 1, inorder);
     }
-    private TreeNode helper(int[] preorder, int preSt, int[] inorder, int inSt, int inE)
+    public TreeNode helper(int preSt, int[] preorder, int inSt, int inE, int[] inorder)
     {
-        
-        if(preSt >= preorder.length || inSt > inE)return null;
-        
-        
-        TreeNode root = new TreeNode(preorder[preSt]);
-        
+        if(preSt > preorder.length || inSt > inE)return null;
+        TreeNode res = new TreeNode(preorder[preSt]);
         int index = 0;
-        
         for(int i = 0; i < inorder.length; ++i)
         {
             if(inorder[i] == preorder[preSt])
@@ -38,10 +31,11 @@ class Solution {
             }
         }
         
-        root.left = helper(preorder, preSt + 1, inorder, inSt, index - 1);
-        root.right = helper(preorder, preSt + (index - inSt + 1), inorder, index + 1, inE);
+        res.left = helper(preSt + 1, preorder, inSt, index - 1, inorder);
+        res.right = helper(preSt + (index - inSt) + 1, preorder, index + 1, inE, inorder);
         
-        return root;
+        return res;
+        
         
     }
 }
