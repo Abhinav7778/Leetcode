@@ -12,7 +12,7 @@ class Solution {
     {
         if(ans.size() == nums.length)
             res.add(new ArrayList<>(ans));
-        else
+        // else
         {
             for(int i = 0; i < nums.length; ++i)
                 {
