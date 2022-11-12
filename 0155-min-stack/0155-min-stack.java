@@ -2,6 +2,11 @@ class MinStack {
 
     Node head;
     
+    public MinStack()
+    {
+        head = null;
+    }
+    
     public void push(int val) {
         if(head == null)
         {
