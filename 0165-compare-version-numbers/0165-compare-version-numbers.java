@@ -34,20 +34,8 @@ class Solution {
         v2.add(Integer.parseInt(n));
         int i = 0, j = 0;
         
-        // for(int k : v1)
-        // {
-        //     System.out.print(" "+k);
-        // }
-        // System.out.println();
-        //         for(int k : v2)
-        // {
-        //     System.out.print(" "+k);
-        // }
-        //         System.out.println();
-        
         while(i < v1.size() && j < v2.size())
         {
-                    // System.out.println("v1 "+ v1.get(i) + " v2 "+ v2.get(j));
 
             if(v1.get(i) < v2.get(j))
                 return -1;
