@@ -22,15 +22,11 @@ class Solution {
         {
             if( i + 1 < s.length() && hm.containsKey(s.substring(i, i+2)))
             {
-                System.out.println(" if "+ s.substring(i, i+2));
-
-
-                    res += hm.get(s.substring(i, i + 2));
-                    ++i;
+                res += hm.get(s.substring(i, i + 2));
+                ++i;
             }
             else
             {
-                System.out.println(" else "+ s.substring(i, i+1));
                 res = res + hm.get(s.substring(i, i+1));
             }
         }
