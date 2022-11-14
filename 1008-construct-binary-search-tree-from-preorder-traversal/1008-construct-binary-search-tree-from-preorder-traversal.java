@@ -15,28 +15,24 @@
  */
 class Solution {
     public TreeNode bstFromPreorder(int[] preorder) {
-        
         return helper(0, preorder.length - 1, preorder);
     }
-    public TreeNode helper(int start, int end, int[] preorder)
+    public TreeNode helper(int s, int e, int[] p)
     {
-        if(start > end)return null;
+        if(s > e)
+            return null;
         
-        TreeNode root = new TreeNode(preorder[start]);
+        TreeNode root = new TreeNode(p[s]);
         
         int i;
-        
-        for( i = start; i <= end; ++i)
+        for(i = s ;i <= e; ++i)
         {
-            if(preorder[i] > preorder[start])
-            {
+            if(p[i] > p[s])
                 break;
-            }
         }
         
-        root.left = helper(start + 1, i - 1, preorder);
-        
-        root.right = helper(i, end, preorder);
+        root.left = helper(s + 1, i - 1, p);
+        root.right = helper(i, e, p);
         
         return root;
     }
