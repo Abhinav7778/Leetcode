@@ -44,7 +44,7 @@ class Solution {
     {
         
         //check if the col had a queen before
-        for(int i = 0; i < row; ++i)
+        for(int i = 0; i < n; ++i)
         {
             if(ans[i][col] == 'Q')
             {
