@@ -18,7 +18,7 @@ class Solution {
         {
             if(ans.contains(nums[i]))continue;
             ans.add(nums[i]);
-            helper(res, ans, nums, i + 1);
+            helper(res, ans, nums, 99999);
             ans.remove(ans.size() - 1);
         }
     }
