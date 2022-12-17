@@ -32,27 +32,67 @@ class GFG
 
 
 //User function Template for Java//User function Template for Java
-class Solution{
-    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
-        // code here
-        ArrayList<Integer> res = new ArrayList<>();
+// class Solution{
+//     ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
+//         // code here
+//         ArrayList<Integer> res = new ArrayList<>();
         
-        helper(0, 0, res, arr, N);
+//         helper(0, 0, res, arr, N);
+        
+//         return res;
+//     }
+//     public void helper(int ind, int sum, ArrayList<Integer> res, ArrayList<Integer> arr, int N)
+//     {
+//         if(ind == N)
+//         {
+//             res.add(sum);
+//             return;
+//         }
+        
+//         helper(ind + 1, sum, res, arr, N);
+        
+//         helper(ind + 1, sum + arr.get(ind), res, arr, N);
+        
+//         return;
+//     }
+// }
+
+
+
+
+
+class Solution {
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
+        
+        ArrayList<Integer> res = new ArrayList<>();
+        ArrayList<Integer> ans = new ArrayList<>();
+        // Collections.sort(arr);
+        helper(res, ans, arr, 0);
         
         return res;
     }
-    public void helper(int ind, int sum, ArrayList<Integer> res, ArrayList<Integer> arr, int N)
+    
+    public void helper(List<Integer> res, List<Integer> ans, List<Integer> nums, int index)
     {
-        if(ind == N)
+    
+        res.add(sum(ans));
+        
+        for(int i = index; i < nums.size(); ++i)
         {
-            res.add(sum);
-            return;
+            
+            ans.add(nums.get(i));
+            helper(res, ans, nums,  i + 1);
+            ans.remove(ans.size() - 1);
         }
-        
-        helper(ind + 1, sum, res, arr, N);
-        
-        helper(ind + 1, sum + arr.get(ind), res, arr, N);
-        
-        return;
+    }
+    
+    public int sum(List<Integer> ans)
+    {
+        int s = 0;
+        for(int i : ans)
+        {
+            s+=i;
+        }
+        return s;
     }
 }
