@@ -62,7 +62,8 @@ class Solution
             if(i[0] > e)
             {
                 ++count;
-                e = Math.max(e, i[1]);
+                e = i[1];
+                // e = Math.max(e, i[1]);
             }
         }
         
