@@ -14,7 +14,6 @@ class Solution {
         
         for(int i = start; i < nums.length; ++i)
         {
-            // if(i > start && nums[i] == nums[i-1]) continue;
             ans.add(nums[i]);
             helper(res, ans, nums, i + 1);
             ans.remove(ans.size() - 1);
