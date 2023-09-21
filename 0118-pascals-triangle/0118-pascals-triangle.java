@@ -2,26 +2,26 @@ class Solution {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> res = new ArrayList<>();
 
-        List<Integer> first = new ArrayList<>();
-        first.add(1);
-        res.add(first);
+        List<Integer> firstRow = new ArrayList<>(Arrays.asList(1));
+        res.add(firstRow);        
 
-
-        for(int i = 1; i < numRows; ++i)
+        for(int i = 1; i <numRows; ++i)//012
         {
-            List<Integer> temp = new ArrayList<>();
-
-            List<Integer> prev = new ArrayList<>();
-            prev = res.get(i-1);
-            temp.add(1);
-            for(int j = 1; j <= i - 1; ++j)
+            List<Integer> middleRows = new ArrayList<>();
+            for(int j = 0; j <= i; ++j)
             {
-                temp.add(prev.get(j-1) + prev.get(j));
+                if(j == 0 || j == i)
+                {
+                    middleRows.add(1);
+                }
+                else
+                {
+                    middleRows.add(res.get(i-1).get(j-1) + res.get(i-1).get(j));                    
+                }
             }
-            temp.add(1);
-
-            res.add(temp);
+            res.add(middleRows);
         }
+        
         return res;
     }
 }
