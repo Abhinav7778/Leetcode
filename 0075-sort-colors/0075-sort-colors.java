@@ -4,13 +4,7 @@ class Solution {
         
         while(i <= two)
         {
-            
-            System.out.println(" xero " + zero + " two " + two  + "  i " + i);
-            for(int j : nums)
-            {
-                System.out.print(" " + j);
-            }
-            System.out.println();
+
             if(nums[i] == 0)
             {
                 nums[i] = nums[zero];
