@@ -10,20 +10,21 @@
  * }
  */
 public class Solution {
-public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-    //boundary check
-    if(headA == null || headB == null) return null;
-    
-    ListNode a = headA;
-    ListNode b = headB;
-    
-    //if a & b have different len, then we will stop the loop after second iteration
-    while( a != b){
-    	//for the end of first iteration, we just reset the pointer to the head of another linkedlist
-        a = a == null? headB : a.next;
-        b = b == null? headA : b.next;    
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        Set<ListNode> hs = new HashSet<>();
+        
+        while(headA!=null)
+        {
+            hs.add(headA);
+            headA = headA.next;
+        }
+        
+        while(headB!=null)
+        {
+            if(hs.contains(headB))
+                return headB;
+            headB = headB.next;
+        }
+        return null;
     }
-    
-    return a;
-}
 }
