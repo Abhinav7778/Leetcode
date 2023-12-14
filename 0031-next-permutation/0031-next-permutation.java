@@ -2,33 +2,38 @@ class Solution {
     public void nextPermutation(int[] nums) {
         int pivot = -1;
         
-        for(int i = nums.length -2; i >=0; --i)
+        for(int i = nums.length - 2; i >= 0; --i)
         {
+            // System.out.println(" nums[i] " + nums[i] + " nums[i+1] " + nums[i+1] + " i " + i);
             if(nums[i] < nums[i+1])
             {
                 pivot = i;
                 break;
             }
         }
-        if(pivot != -1)
-        {
-            for(int i = nums.length -1; i > pivot; --i)
-            {
-                
-                if(nums[i] > nums[pivot])
-                {
-                    swap(nums, i, pivot);
-                    break;
-                }
-            }
-            Arrays.sort(nums, pivot + 1 , nums.length);
-                
-        }
-        else
+        
+        // System.out.println(" pivot " + pivot);
+        
+        if(pivot == -1)
         {
             Arrays.sort(nums);
         }
-        
+        else
+        {
+            for(int i = nums.length - 1; i >= 0; --i)
+            {
+                if(nums[i] > nums[pivot])
+                {
+                    System.out.println(" pivot " + pivot);
+                    swap(nums, i, pivot);
+                    break;
+                // for(int d : nums)
+                //     System.out.print(" "+d);
+                }
+            }
+            Arrays.sort(nums, pivot + 1, nums.length);
+        }
+
     }
     public void swap(int[] nums, int pos1, int pos2)
     {
