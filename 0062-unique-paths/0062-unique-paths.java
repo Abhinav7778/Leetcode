@@ -1,10 +1,9 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-        int[][] grid = new int[m][n];
-        for(int i = 0; i < m; ++i)
-        {
-            Arrays.fill(grid[i],1);
-        }
+        int[][]grid = new int[m][n];
+        
+        for(int i = 0; i < grid.length; ++i)
+            Arrays.fill(grid[i], 1);
         
         for(int i = 1; i < m; ++i)
         {
@@ -13,6 +12,8 @@ class Solution {
                 grid[i][j] = grid[i-1][j] + grid[i][j-1];
             }
         }
+        
         return grid[m-1][n-1];
+        
     }
 }
